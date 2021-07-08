@@ -1,0 +1,30 @@
+version: "3"
+services: 
+    react_multi_1:
+        image: kellydouglass/react_multi_1
+        build:
+            context: ./react_multi_1
+            dockerfile: Dockerfile.dev
+        volumes: 
+            - /app/node_modules
+            - ./react_multi_1:/app
+    server_multi_1:
+        image: kellydouglass/server_multi_1
+        build: 
+            context: ./server_multi_1
+            dockerfile: Dockerfile.dev
+        volumes: 
+            - /app/node_modules
+            - ./server_multi_1:/app
+    nginx:
+        image: kellydouglass/nginx_multi_1
+        build:
+            context: ./nginx
+            dockerfile: Dockerfile.dev
+        restart: always
+        depends_on: 
+            - react_multi_1
+            - server_multi_1
+        ports:
+            - '80:80'
+    
