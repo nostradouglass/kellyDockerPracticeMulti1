@@ -1,33 +1,13 @@
 {
-    "AWSEBDockerrunVersion": 2,
-    "containerDefinitions": [
-        {
-            "name": "react_multi_1",
-            "image": "kellydouglass/react_multi_1",
-            "hostname": "rect_multi_1",
-            "essential": false,
-            "memory": 128
-        },
-        {
-            "name": "server_multi_1",
-            "image": "kellydouglass/server_multi_1",
-            "hostname": "server_multi_1",
-            "essential": false,
-            "memory": 128
-        },
-        {
-            "name": "nginx_multi_1",
-            "image": "kellydouglass/nginx_multi_1",
-            "hostname": "nginx_multi_1",
-            "essential": true,
-            "memory": 128,
-            "portMappings": [
-                {
-                    "hostPort": 80,
-                    "containerPort": 80
-                }
-            ],
-            "links": ["server_multi_1", "react_multi_1"]
-        }
+    "AWSEBDockerrunVersion": "1",
+    "Image": {
+      "Name": "kellydouglass/nginx_multi_1",
+      "Update": "true"
+    },
+    "Ports": [
+      {
+        "ContainerPort": "80",
+        "HostPort": "80"
+      }
     ]
-}
+  }
